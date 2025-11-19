@@ -74,7 +74,11 @@ export default function MapWithSidebar() {
   useEffect(() => {
     if (!mapVisible) return;
     loadingTimer.current = setTimeout(() => setMapLoading(false), 1000);
-    return () => loadingTimer.current && clearTimeout(loadingTimer.current);
+    return () => {
+      if (loadingTimer.current) {
+        clearTimeout(loadingTimer.current);
+      }
+    };
   }, [mapVisible]);
 
   /* ------------------ STYLE GEOJSON ------------------ */
