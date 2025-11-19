@@ -21,9 +21,9 @@ function Navbar() {
 
           {openDropdown && (
             <ul className="absolute left-0 mt-2  bg-neutral-700 gap-2.5 py-2 px-2 shadow-lg w-56 overflow-hidden">
-              <NavItem label="KPPR Kegiatan Non" url="/kppr/non" />
+              <NavItem label="KPPR Kegiatan Non" url="https://sicantik.go.id/sign-in" />
                 <hr className="mt-2 mb-2" />
-              <NavItem label="KPPR Kegiatan Berusaha" url="/kppr/berusaha" />
+              <NavItem label="KPPR Kegiatan Berusaha" url="https://oss.go.id/id" />
             </ul>
           )}
         </li>
