@@ -7,9 +7,10 @@ interface NavItemProps {
   url: string;
   label: string;
   className?: string;
+  target?:string
 }
 
-export default function NavItem({ url, label, className}: NavItemProps) {
+export default function NavItem({ url, label, className, target}: NavItemProps) {
   const pathname = usePathname();
 
   const isActive = pathname === url;
@@ -18,6 +19,7 @@ export default function NavItem({ url, label, className}: NavItemProps) {
     <li>
       <Link
         href={url}
+        target={target}
         className={`nav-item transition-opacity duration-300 relative group 
                     ${isActive ? "font-bold " : "opacity-75 hover:opacity-100"} ${className}`}
       >

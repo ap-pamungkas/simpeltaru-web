@@ -252,7 +252,7 @@ export default function MapWithSidebar() {
 
             <MapContainer
               center={[-1.83587, 109.97504]}
-              zoom={12}
+              zoom={14}
               style={{ height: "100%", width: "100%" }}
             >
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

@@ -33,9 +33,9 @@ function MobileNav({ open }: HeaderProps) {
             {/* MENU DROPDOWN */}
             {openDropdown && (
               <ul className="ml-4 mt-2 space-y-2">
-                 <NavItem label="KPPR Kegiatan Non" url="/kppr/non" />
+                 <NavItem label="KPPR Kegiatan Non" target="_blank" url="https://sicantik.go.id/sign-in" />
                                 <hr className="mt-2 mb-2 w-1/2" />
-                              <NavItem label="KPPR Kegiatan Berusaha" url="/kppr/berusaha" />
+                              <NavItem label="KPPR Kegiatan Berusaha" target="_blank" url="https://oss.go.id/id" />
               </ul>
             )}
           </li>

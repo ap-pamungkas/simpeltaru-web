@@ -13,6 +13,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "SIMPELTARU KETAPANG",
   description: "Sistem Informasi Pelayanan Tata Ruang Kabupaten Ketapang",
+   icons: {
+     icon: "/public/favicon.svg",
+  },
  
 };
 
