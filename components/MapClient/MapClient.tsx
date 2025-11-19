@@ -53,12 +53,14 @@ export default function MapWithSidebar() {
   useEffect(() => {
     async function loadData() {
       try {
-        const c = await fetch("https://simpeltaru.agpratech.my.id/api/colors").then((r) => r.json());
+        const c = await fetch(
+          "https://simpeltaru.agpratech.my.id/api/colors"
+        ).then((r) => r.json());
         setColors(c.colors || {});
 
-        const z = await fetch("https://simpeltaru.agpratech.my.id/api/peta-pola-ruang-rdtr").then((r) =>
-          r.json()
-        );
+        const z = await fetch(
+          "https://simpeltaru.agpratech.my.id/api/peta-pola-ruang-rdtr"
+        ).then((r) => r.json());
 
         setZonas(z || []);
         setActiveZonas(new Set(z.map((i: Zona) => i.id)));
@@ -99,7 +101,9 @@ export default function MapWithSidebar() {
   const buildPopup = (props: any, mode: "min" | "compact" | "full") => {
     const title = props.NAMOBJ || props.NAMZON || "Detail Zonasi";
 
-    const entries = Object.entries(props).filter(([k]) => !["Shape_Leng", "Shape_Area"].includes(k));
+    const entries = Object.entries(props).filter(
+      ([k]) => !["Shape_Leng", "Shape_Area"].includes(k)
+    );
 
     const header = `
       <div style="
@@ -154,7 +158,8 @@ export default function MapWithSidebar() {
     const props = feature.properties;
     const state = { mode: "compact" as "min" | "compact" | "full" };
 
-    const render = () => layer.bindPopup(buildPopup(props, state.mode), { closeButton: false });
+    const render = () =>
+      layer.bindPopup(buildPopup(props, state.mode), { closeButton: false });
 
     render();
 
@@ -169,12 +174,15 @@ export default function MapWithSidebar() {
         const action = btn.dataset.action;
 
         if (action === "min") state.mode = "min";
-        if (action === "toggle") state.mode = state.mode === "full" ? "compact" : "full";
+        if (action === "toggle")
+          state.mode = state.mode === "full" ? "compact" : "full";
         if (action === "close") return layer.closePopup();
         if (action === "zoom") {
-          const map = layer._map;
+          const map = (layer as any)._map || (layer as any).map;
           const bounds = (layer as any).getBounds();
-          map.fitBounds(bounds, { padding: [40, 40] });
+          if (map && bounds) {
+            map.fitBounds(bounds, { padding: [40, 40] });
+          }
         }
 
         render();
@@ -189,20 +197,24 @@ export default function MapWithSidebar() {
   /* ------------------ RENDER ------------------ */
   return (
     <div className="relative flex h-[80vh] overflow-hidden">
-
       {/* Sidebar Toggle */}
       <button
         className="absolute border border-slate-500 cursor-pointer top-3.5 left-22 z-9999 bg-white px-2 py-1 shadow-lg rounded"
         onClick={() => setSidebarOpen((v) => !v)}
       >
-       
-        {sidebarOpen ? <FiChevronLeft size={20} />  : <FiChevronRight size={20} /> } 
+        {sidebarOpen ? (
+          <FiChevronLeft size={20} />
+        ) : (
+          <FiChevronRight size={20} />
+        )}
       </button>
 
       {/* Sidebar */}
       <div
         className={`bg-white shadow-lg p-4 border border-gray-200 h-full transition-all duration-300 z-999
-        ${sidebarOpen ? "w-64 opacity-100" : "w-0 opacity-0 pointer-events-none"}`}
+        ${
+          sidebarOpen ? "w-64 opacity-100" : "w-0 opacity-0 pointer-events-none"
+        }`}
       >
         <h2 className="font-semibold  text-lg mb-3">Zonasi</h2>
         <hr />
